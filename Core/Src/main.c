@@ -39,7 +39,7 @@
 
 /* Private define ------------------------------------------------------------*/
 /* USER CODE BEGIN PD */
-#define LOG_PERIOD 15000
+#define LOG_PERIOD 10000
 #define MAX_LOG_PERIOD 60000
 #define MULTIPLIER MAX_LOG_PERIOD/LOG_PERIOD
 #define CONVERSION_FACTOR 0.006315
@@ -561,7 +561,7 @@ void setTimeZone(){
 
 void radiationScreen(){
 	SSD1306_Clear();
-	sprintf(screenText, "CPM:%04d", cpm);
+	sprintf(screenText, "CPM:%d", cpm);
 	SSD1306_GotoXY(1, 1);
 	SSD1306_Puts(screenText, &Font_16x26, 1);
 	sprintf(screenText, "uSv/h:%0.3f", microSievert);
