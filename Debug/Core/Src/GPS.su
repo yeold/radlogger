@@ -1,0 +1,4 @@
+GPS.c:10:8:convertDegMinToDecDeg	40	static
+GPS.c:25:6:GPS_Init	8	static
+GPS.c:31:6:GPS_CallBack	8	static
+GPS.c:42:6:GPS_Process	104	static
