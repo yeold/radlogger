@@ -37,11 +37,11 @@ Idx Name          Size      VMA       LMA       File off  Algn
                   CONTENTS, READONLY, DEBUGGING
  16 .debug_macro  000188b3  00000000  00000000  0003b1d0  2**0
                   CONTENTS, READONLY, DEBUGGING
- 17 .debug_line   0000f334  00000000  00000000  00053a83  2**0
+ 17 .debug_line   0000f335  00000000  00000000  00053a83  2**0
                   CONTENTS, READONLY, DEBUGGING
- 18 .debug_str    00091863  00000000  00000000  00062db7  2**0
+ 18 .debug_str    00091863  00000000  00000000  00062db8  2**0
                   CONTENTS, READONLY, DEBUGGING
- 19 .comment      0000007b  00000000  00000000  000f461a  2**0
+ 19 .comment      0000007b  00000000  00000000  000f461b  2**0
                   CONTENTS, READONLY
  20 .debug_frame  000060cc  00000000  00000000  000f4698  2**2
                   CONTENTS, READONLY, DEBUGGING
@@ -2123,6 +2123,7 @@ int main(void)
 		case STANDBY:
 			standBy();
  800166a:	f000 fd9b 	bl	80021a4 <standBy>
+
 			mode = ALL;
  800166e:	4b0d      	ldr	r3, [pc, #52]	; (80016a4 <main+0x15c>)
  8001670:	2203      	movs	r2, #3
@@ -2163,7 +2164,7 @@ int main(void)
  800169a:	bf00      	nop
  800169c:	20000000 	.word	0x20000000
  80016a0:	0800a0b8 	.word	0x0800a0b8
- 80016a4:	20000018 	.word	0x20000018
+ 80016a4:	20000230 	.word	0x20000230
  80016a8:	2000022f 	.word	0x2000022f
  80016ac:	2000022e 	.word	0x2000022e
 
@@ -2891,7 +2892,7 @@ void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim){
  8001aec:	4770      	bx	lr
  8001aee:	bf00      	nop
  8001af0:	200009b4 	.word	0x200009b4
- 8001af4:	20000230 	.word	0x20000230
+ 8001af4:	20000234 	.word	0x20000234
 
 08001af8 <geigerCounter>:
 
@@ -2909,7 +2910,7 @@ void geigerCounter(){
  8001b06:	681b      	ldr	r3, [r3, #0]
  8001b08:	687a      	ldr	r2, [r7, #4]
  8001b0a:	1ad3      	subs	r3, r2, r3
- 8001b0c:	f643 2298 	movw	r2, #15000	; 0x3a98
+ 8001b0c:	f242 7210 	movw	r2, #10000	; 0x2710
  8001b10:	4293      	cmp	r3, r2
  8001b12:	d928      	bls.n	8001b66 <geigerCounter+0x6e>
 		previousTick = currentTick;
@@ -2959,9 +2960,9 @@ void geigerCounter(){
  8001b6e:	bf00      	nop
  8001b70:	e7967caf 	.word	0xe7967caf
  8001b74:	3f79ddc1 	.word	0x3f79ddc1
- 8001b78:	20000238 	.word	0x20000238
+ 8001b78:	2000023c 	.word	0x2000023c
  8001b7c:	2000022c 	.word	0x2000022c
- 8001b80:	45e7b273 	.word	0x45e7b273
+ 8001b80:	68db8bad 	.word	0x68db8bad
  8001b84:	200009f4 	.word	0x200009f4
  8001b88:	20000a38 	.word	0x20000a38
 
@@ -3024,10 +3025,10 @@ void readgpsTime(){
  8001bea:	f85d 7b04 	ldr.w	r7, [sp], #4
  8001bee:	4770      	bx	lr
  8001bf0:	20000660 	.word	0x20000660
- 8001bf4:	20000019 	.word	0x20000019
- 8001bf8:	20000234 	.word	0x20000234
- 8001bfc:	20000235 	.word	0x20000235
- 8001c00:	20000236 	.word	0x20000236
+ 8001bf4:	20000018 	.word	0x20000018
+ 8001bf8:	20000238 	.word	0x20000238
+ 8001bfc:	20000239 	.word	0x20000239
+ 8001c00:	2000023a 	.word	0x2000023a
 
 08001c04 <setTimeZone>:
 
@@ -3168,12 +3169,12 @@ void setTimeZone(){
  8001cf0:	bd80      	pop	{r7, pc}
  8001cf2:	bf00      	nop
  8001cf4:	200009b4 	.word	0x200009b4
- 8001cf8:	20000019 	.word	0x20000019
+ 8001cf8:	20000018 	.word	0x20000018
  8001cfc:	0800a0c8 	.word	0x0800a0c8
  8001d00:	200009f8 	.word	0x200009f8
  8001d04:	20000010 	.word	0x20000010
  8001d08:	2000022e 	.word	0x2000022e
- 8001d0c:	20000230 	.word	0x20000230
+ 8001d0c:	20000234 	.word	0x20000234
  8001d10:	2000022f 	.word	0x2000022f
 
 08001d14 <radiationScreen>:
@@ -3184,7 +3185,7 @@ void radiationScreen(){
  8001d18:	af02      	add	r7, sp, #8
 	SSD1306_Clear();
  8001d1a:	f000 fdcd 	bl	80028b8 <SSD1306_Clear>
-	sprintf(screenText, "CPM:%04d", cpm);
+	sprintf(screenText, "CPM:%d", cpm);
  8001d1e:	4b25      	ldr	r3, [pc, #148]	; (8001db4 <radiationScreen+0xa0>)
  8001d20:	881b      	ldrh	r3, [r3, #0]
  8001d22:	461a      	mov	r2, r3
@@ -3264,12 +3265,12 @@ void radiationScreen(){
  8001dbc:	200009f8 	.word	0x200009f8
  8001dc0:	20000010 	.word	0x20000010
  8001dc4:	20000a38 	.word	0x20000a38
- 8001dc8:	0800a0dc 	.word	0x0800a0dc
+ 8001dc8:	0800a0d8 	.word	0x0800a0d8
  8001dcc:	20000008 	.word	0x20000008
- 8001dd0:	20000234 	.word	0x20000234
- 8001dd4:	20000235 	.word	0x20000235
- 8001dd8:	20000236 	.word	0x20000236
- 8001ddc:	0800a0e8 	.word	0x0800a0e8
+ 8001dd0:	20000238 	.word	0x20000238
+ 8001dd4:	20000239 	.word	0x20000239
+ 8001dd8:	2000023a 	.word	0x2000023a
+ 8001ddc:	0800a0e4 	.word	0x0800a0e4
  8001de0:	20000000 	.word	0x20000000
 
 08001de4 <timedateScreen>:
@@ -3297,7 +3298,7 @@ void timedateScreen(){
  8001e08:	492f      	ldr	r1, [pc, #188]	; (8001ec8 <timedateScreen+0xe4>)
  8001e0a:	482e      	ldr	r0, [pc, #184]	; (8001ec4 <timedateScreen+0xe0>)
  8001e0c:	f000 fc34 	bl	8002678 <SSD1306_Puts>
-	sprintf(screenText, "%02hd:%02d:%02d", hour, minute, second);
+	sprintf(screenText, "%02d:%02d:%02d", hour, minute, second);
  8001e10:	4b2e      	ldr	r3, [pc, #184]	; (8001ecc <timedateScreen+0xe8>)
  8001e12:	781b      	ldrb	r3, [r3, #0]
  8001e14:	461a      	mov	r2, r3
@@ -3380,18 +3381,18 @@ void timedateScreen(){
  8001eb6:	46bd      	mov	sp, r7
  8001eb8:	bd90      	pop	{r4, r7, pc}
  8001eba:	bf00      	nop
- 8001ebc:	20000019 	.word	0x20000019
+ 8001ebc:	20000018 	.word	0x20000018
  8001ec0:	0800a0c8 	.word	0x0800a0c8
  8001ec4:	200009f8 	.word	0x200009f8
  8001ec8:	20000008 	.word	0x20000008
- 8001ecc:	20000234 	.word	0x20000234
- 8001ed0:	20000235 	.word	0x20000235
- 8001ed4:	20000236 	.word	0x20000236
- 8001ed8:	0800a100 	.word	0x0800a100
+ 8001ecc:	20000238 	.word	0x20000238
+ 8001ed0:	20000239 	.word	0x20000239
+ 8001ed4:	2000023a 	.word	0x2000023a
+ 8001ed8:	0800a0fc 	.word	0x0800a0fc
  8001edc:	20000660 	.word	0x20000660
- 8001ee0:	0800a110 	.word	0x0800a110
+ 8001ee0:	0800a10c 	.word	0x0800a10c
  8001ee4:	20000a38 	.word	0x20000a38
- 8001ee8:	0800a124 	.word	0x0800a124
+ 8001ee8:	0800a120 	.word	0x0800a120
  8001eec:	20000000 	.word	0x20000000
 
 08001ef0 <gpsinfoScreen>:
@@ -3402,9 +3403,9 @@ void gpsinfoScreen(){
  8001ef4:	af02      	add	r7, sp, #8
 	SSD1306_Clear();
  8001ef6:	f000 fcdf 	bl	80028b8 <SSD1306_Clear>
-	sprintf(screenText, "Lat:  %c%f", GPS.GPGGA.EW_Indicator, GPS.GPGGA.LatitudeDecimal);
+	sprintf(screenText, "Lat:  %c%f", GPS.GPGGA.NS_Indicator, GPS.GPGGA.LatitudeDecimal);
  8001efa:	4b53      	ldr	r3, [pc, #332]	; (8002048 <gpsinfoScreen+0x158>)
- 8001efc:	f893 3230 	ldrb.w	r3, [r3, #560]	; 0x230
+ 8001efc:	f893 3220 	ldrb.w	r3, [r3, #544]	; 0x220
  8001f00:	461a      	mov	r2, r3
  8001f02:	4b51      	ldr	r3, [pc, #324]	; (8002048 <gpsinfoScreen+0x158>)
  8001f04:	e9d3 3486 	ldrd	r3, r4, [r3, #536]	; 0x218
@@ -3421,9 +3422,9 @@ void gpsinfoScreen(){
  8001f1e:	494d      	ldr	r1, [pc, #308]	; (8002054 <gpsinfoScreen+0x164>)
  8001f20:	484b      	ldr	r0, [pc, #300]	; (8002050 <gpsinfoScreen+0x160>)
  8001f22:	f000 fba9 	bl	8002678 <SSD1306_Puts>
-	sprintf(screenText, "Long: %c%f", GPS.GPGGA.NS_Indicator, GPS.GPGGA.LongitudeDecimal);
+	sprintf(screenText, "Long: %c%f", GPS.GPGGA.EW_Indicator, GPS.GPGGA.LongitudeDecimal);
  8001f26:	4b48      	ldr	r3, [pc, #288]	; (8002048 <gpsinfoScreen+0x158>)
- 8001f28:	f893 3220 	ldrb.w	r3, [r3, #544]	; 0x220
+ 8001f28:	f893 3230 	ldrb.w	r3, [r3, #560]	; 0x230
  8001f2c:	461a      	mov	r2, r3
  8001f2e:	4b46      	ldr	r3, [pc, #280]	; (8002048 <gpsinfoScreen+0x158>)
  8001f30:	e9d3 348a 	ldrd	r3, r4, [r3, #552]	; 0x228
@@ -3460,120 +3461,119 @@ void gpsinfoScreen(){
  8001f74:	4b34      	ldr	r3, [pc, #208]	; (8002048 <gpsinfoScreen+0x158>)
  8001f76:	f893 3231 	ldrb.w	r3, [r3, #561]	; 0x231
  8001f7a:	2b01      	cmp	r3, #1
- 8001f7c:	d00d      	beq.n	8001f9a <gpsinfoScreen+0xaa>
+ 8001f7c:	d00b      	beq.n	8001f96 <gpsinfoScreen+0xa6>
  8001f7e:	2b02      	cmp	r3, #2
- 8001f80:	d015      	beq.n	8001fae <gpsinfoScreen+0xbe>
- 8001f82:	2b00      	cmp	r3, #0
- 8001f84:	d11c      	bne.n	8001fc0 <gpsinfoScreen+0xd0>
-	case 0:
+ 8001f80:	d013      	beq.n	8001faa <gpsinfoScreen+0xba>
+	default:
 		SSD1306_GotoXY(1, 30);
- 8001f86:	211e      	movs	r1, #30
- 8001f88:	2001      	movs	r0, #1
- 8001f8a:	f000 fadf 	bl	800254c <SSD1306_GotoXY>
+ 8001f82:	211e      	movs	r1, #30
+ 8001f84:	2001      	movs	r0, #1
+ 8001f86:	f000 fae1 	bl	800254c <SSD1306_GotoXY>
 		SSD1306_Puts("Fix:  N/A", &Font_7x10, 1);
- 8001f8e:	2201      	movs	r2, #1
- 8001f90:	4930      	ldr	r1, [pc, #192]	; (8002054 <gpsinfoScreen+0x164>)
- 8001f92:	4833      	ldr	r0, [pc, #204]	; (8002060 <gpsinfoScreen+0x170>)
- 8001f94:	f000 fb70 	bl	8002678 <SSD1306_Puts>
+ 8001f8a:	2201      	movs	r2, #1
+ 8001f8c:	4931      	ldr	r1, [pc, #196]	; (8002054 <gpsinfoScreen+0x164>)
+ 8001f8e:	4834      	ldr	r0, [pc, #208]	; (8002060 <gpsinfoScreen+0x170>)
+ 8001f90:	f000 fb72 	bl	8002678 <SSD1306_Puts>
 		break;
- 8001f98:	e012      	b.n	8001fc0 <gpsinfoScreen+0xd0>
+ 8001f94:	e012      	b.n	8001fbc <gpsinfoScreen+0xcc>
 	case 1:
 		SSD1306_GotoXY(1, 30);
- 8001f9a:	211e      	movs	r1, #30
- 8001f9c:	2001      	movs	r0, #1
- 8001f9e:	f000 fad5 	bl	800254c <SSD1306_GotoXY>
+ 8001f96:	211e      	movs	r1, #30
+ 8001f98:	2001      	movs	r0, #1
+ 8001f9a:	f000 fad7 	bl	800254c <SSD1306_GotoXY>
 		SSD1306_Puts("Fix:  2D", &Font_7x10, 1);
- 8001fa2:	2201      	movs	r2, #1
- 8001fa4:	492b      	ldr	r1, [pc, #172]	; (8002054 <gpsinfoScreen+0x164>)
- 8001fa6:	482f      	ldr	r0, [pc, #188]	; (8002064 <gpsinfoScreen+0x174>)
- 8001fa8:	f000 fb66 	bl	8002678 <SSD1306_Puts>
+ 8001f9e:	2201      	movs	r2, #1
+ 8001fa0:	492c      	ldr	r1, [pc, #176]	; (8002054 <gpsinfoScreen+0x164>)
+ 8001fa2:	4830      	ldr	r0, [pc, #192]	; (8002064 <gpsinfoScreen+0x174>)
+ 8001fa4:	f000 fb68 	bl	8002678 <SSD1306_Puts>
 		break;
- 8001fac:	e008      	b.n	8001fc0 <gpsinfoScreen+0xd0>
+ 8001fa8:	e008      	b.n	8001fbc <gpsinfoScreen+0xcc>
 	case 2:
 		SSD1306_GotoXY(1, 30);
- 8001fae:	211e      	movs	r1, #30
- 8001fb0:	2001      	movs	r0, #1
- 8001fb2:	f000 facb 	bl	800254c <SSD1306_GotoXY>
+ 8001faa:	211e      	movs	r1, #30
+ 8001fac:	2001      	movs	r0, #1
+ 8001fae:	f000 facd 	bl	800254c <SSD1306_GotoXY>
 		SSD1306_Puts("Fix:  3D", &Font_7x10, 1);
- 8001fb6:	2201      	movs	r2, #1
- 8001fb8:	4926      	ldr	r1, [pc, #152]	; (8002054 <gpsinfoScreen+0x164>)
- 8001fba:	482b      	ldr	r0, [pc, #172]	; (8002068 <gpsinfoScreen+0x178>)
- 8001fbc:	f000 fb5c 	bl	8002678 <SSD1306_Puts>
+ 8001fb2:	2201      	movs	r2, #1
+ 8001fb4:	4927      	ldr	r1, [pc, #156]	; (8002054 <gpsinfoScreen+0x164>)
+ 8001fb6:	482c      	ldr	r0, [pc, #176]	; (8002068 <gpsinfoScreen+0x178>)
+ 8001fb8:	f000 fb5e 	bl	8002678 <SSD1306_Puts>
 	}
 	sprintf(screenText, "Speed:%0.1f km/h", GPS.GPRMC.GroundSpeed * 1.852011);
- 8001fc0:	4b21      	ldr	r3, [pc, #132]	; (8002048 <gpsinfoScreen+0x158>)
- 8001fc2:	f8d3 327c 	ldr.w	r3, [r3, #636]	; 0x27c
- 8001fc6:	4618      	mov	r0, r3
- 8001fc8:	f7fe fac6 	bl	8000558 <__aeabi_f2d>
- 8001fcc:	a31c      	add	r3, pc, #112	; (adr r3, 8002040 <gpsinfoScreen+0x150>)
- 8001fce:	e9d3 2300 	ldrd	r2, r3, [r3]
- 8001fd2:	f7fe fb19 	bl	8000608 <__aeabi_dmul>
- 8001fd6:	4603      	mov	r3, r0
- 8001fd8:	460c      	mov	r4, r1
- 8001fda:	461a      	mov	r2, r3
- 8001fdc:	4623      	mov	r3, r4
- 8001fde:	4923      	ldr	r1, [pc, #140]	; (800206c <gpsinfoScreen+0x17c>)
- 8001fe0:	481b      	ldr	r0, [pc, #108]	; (8002050 <gpsinfoScreen+0x160>)
- 8001fe2:	f004 fae7 	bl	80065b4 <siprintf>
+ 8001fbc:	4b22      	ldr	r3, [pc, #136]	; (8002048 <gpsinfoScreen+0x158>)
+ 8001fbe:	f8d3 327c 	ldr.w	r3, [r3, #636]	; 0x27c
+ 8001fc2:	4618      	mov	r0, r3
+ 8001fc4:	f7fe fac8 	bl	8000558 <__aeabi_f2d>
+ 8001fc8:	a31d      	add	r3, pc, #116	; (adr r3, 8002040 <gpsinfoScreen+0x150>)
+ 8001fca:	e9d3 2300 	ldrd	r2, r3, [r3]
+ 8001fce:	f7fe fb1b 	bl	8000608 <__aeabi_dmul>
+ 8001fd2:	4603      	mov	r3, r0
+ 8001fd4:	460c      	mov	r4, r1
+ 8001fd6:	461a      	mov	r2, r3
+ 8001fd8:	4623      	mov	r3, r4
+ 8001fda:	4924      	ldr	r1, [pc, #144]	; (800206c <gpsinfoScreen+0x17c>)
+ 8001fdc:	481c      	ldr	r0, [pc, #112]	; (8002050 <gpsinfoScreen+0x160>)
+ 8001fde:	f004 fae9 	bl	80065b4 <siprintf>
 	SSD1306_GotoXY(1, 40);
- 8001fe6:	2128      	movs	r1, #40	; 0x28
- 8001fe8:	2001      	movs	r0, #1
- 8001fea:	f000 faaf 	bl	800254c <SSD1306_GotoXY>
+ 8001fe2:	2128      	movs	r1, #40	; 0x28
+ 8001fe4:	2001      	movs	r0, #1
+ 8001fe6:	f000 fab1 	bl	800254c <SSD1306_GotoXY>
 	SSD1306_Puts(screenText, &Font_7x10, 1);
- 8001fee:	2201      	movs	r2, #1
- 8001ff0:	4918      	ldr	r1, [pc, #96]	; (8002054 <gpsinfoScreen+0x164>)
- 8001ff2:	4817      	ldr	r0, [pc, #92]	; (8002050 <gpsinfoScreen+0x160>)
- 8001ff4:	f000 fb40 	bl	8002678 <SSD1306_Puts>
+ 8001fea:	2201      	movs	r2, #1
+ 8001fec:	4919      	ldr	r1, [pc, #100]	; (8002054 <gpsinfoScreen+0x164>)
+ 8001fee:	4818      	ldr	r0, [pc, #96]	; (8002050 <gpsinfoScreen+0x160>)
+ 8001ff0:	f000 fb42 	bl	8002678 <SSD1306_Puts>
 	SSD1306_DrawLine(1, 51, 128, 51, 1);
- 8001ff8:	2301      	movs	r3, #1
- 8001ffa:	9300      	str	r3, [sp, #0]
- 8001ffc:	2333      	movs	r3, #51	; 0x33
- 8001ffe:	2280      	movs	r2, #128	; 0x80
- 8002000:	2133      	movs	r1, #51	; 0x33
- 8002002:	2001      	movs	r0, #1
- 8002004:	f000 fb5d 	bl	80026c2 <SSD1306_DrawLine>
+ 8001ff4:	2301      	movs	r3, #1
+ 8001ff6:	9300      	str	r3, [sp, #0]
+ 8001ff8:	2333      	movs	r3, #51	; 0x33
+ 8001ffa:	2280      	movs	r2, #128	; 0x80
+ 8001ffc:	2133      	movs	r1, #51	; 0x33
+ 8001ffe:	2001      	movs	r0, #1
+ 8002000:	f000 fb5f 	bl	80026c2 <SSD1306_DrawLine>
 	sprintf(screenText, "uSv/h: %0.3f", microSievert);
- 8002008:	4b19      	ldr	r3, [pc, #100]	; (8002070 <gpsinfoScreen+0x180>)
- 800200a:	681b      	ldr	r3, [r3, #0]
- 800200c:	4618      	mov	r0, r3
- 800200e:	f7fe faa3 	bl	8000558 <__aeabi_f2d>
- 8002012:	4603      	mov	r3, r0
- 8002014:	460c      	mov	r4, r1
- 8002016:	461a      	mov	r2, r3
- 8002018:	4623      	mov	r3, r4
- 800201a:	4916      	ldr	r1, [pc, #88]	; (8002074 <gpsinfoScreen+0x184>)
- 800201c:	480c      	ldr	r0, [pc, #48]	; (8002050 <gpsinfoScreen+0x160>)
- 800201e:	f004 fac9 	bl	80065b4 <siprintf>
+ 8002004:	4b1a      	ldr	r3, [pc, #104]	; (8002070 <gpsinfoScreen+0x180>)
+ 8002006:	681b      	ldr	r3, [r3, #0]
+ 8002008:	4618      	mov	r0, r3
+ 800200a:	f7fe faa5 	bl	8000558 <__aeabi_f2d>
+ 800200e:	4603      	mov	r3, r0
+ 8002010:	460c      	mov	r4, r1
+ 8002012:	461a      	mov	r2, r3
+ 8002014:	4623      	mov	r3, r4
+ 8002016:	4917      	ldr	r1, [pc, #92]	; (8002074 <gpsinfoScreen+0x184>)
+ 8002018:	480d      	ldr	r0, [pc, #52]	; (8002050 <gpsinfoScreen+0x160>)
+ 800201a:	f004 facb 	bl	80065b4 <siprintf>
 	SSD1306_GotoXY(1, 53);
- 8002022:	2135      	movs	r1, #53	; 0x35
- 8002024:	2001      	movs	r0, #1
- 8002026:	f000 fa91 	bl	800254c <SSD1306_GotoXY>
+ 800201e:	2135      	movs	r1, #53	; 0x35
+ 8002020:	2001      	movs	r0, #1
+ 8002022:	f000 fa93 	bl	800254c <SSD1306_GotoXY>
 	SSD1306_Puts(screenText, &Font_7x10, 1);
- 800202a:	2201      	movs	r2, #1
- 800202c:	4909      	ldr	r1, [pc, #36]	; (8002054 <gpsinfoScreen+0x164>)
- 800202e:	4808      	ldr	r0, [pc, #32]	; (8002050 <gpsinfoScreen+0x160>)
- 8002030:	f000 fb22 	bl	8002678 <SSD1306_Puts>
+ 8002026:	2201      	movs	r2, #1
+ 8002028:	490a      	ldr	r1, [pc, #40]	; (8002054 <gpsinfoScreen+0x164>)
+ 800202a:	4809      	ldr	r0, [pc, #36]	; (8002050 <gpsinfoScreen+0x160>)
+ 800202c:	f000 fb24 	bl	8002678 <SSD1306_Puts>
 	SSD1306_UpdateScreen();
- 8002034:	f000 f9e4 	bl	8002400 <SSD1306_UpdateScreen>
+ 8002030:	f000 f9e6 	bl	8002400 <SSD1306_UpdateScreen>
 }
- 8002038:	bf00      	nop
- 800203a:	3704      	adds	r7, #4
- 800203c:	46bd      	mov	sp, r7
- 800203e:	bd90      	pop	{r4, r7, pc}
+ 8002034:	bf00      	nop
+ 8002036:	3704      	adds	r7, #4
+ 8002038:	46bd      	mov	sp, r7
+ 800203a:	bd90      	pop	{r4, r7, pc}
+ 800203c:	f3af 8000 	nop.w
  8002040:	494d50ec 	.word	0x494d50ec
  8002044:	3ffda1d6 	.word	0x3ffda1d6
  8002048:	20000660 	.word	0x20000660
- 800204c:	0800a134 	.word	0x0800a134
+ 800204c:	0800a130 	.word	0x0800a130
  8002050:	200009f8 	.word	0x200009f8
  8002054:	20000000 	.word	0x20000000
- 8002058:	0800a140 	.word	0x0800a140
- 800205c:	0800a14c 	.word	0x0800a14c
- 8002060:	0800a158 	.word	0x0800a158
- 8002064:	0800a164 	.word	0x0800a164
- 8002068:	0800a170 	.word	0x0800a170
- 800206c:	0800a17c 	.word	0x0800a17c
+ 8002058:	0800a13c 	.word	0x0800a13c
+ 800205c:	0800a148 	.word	0x0800a148
+ 8002060:	0800a154 	.word	0x0800a154
+ 8002064:	0800a160 	.word	0x0800a160
+ 8002068:	0800a16c 	.word	0x0800a16c
+ 800206c:	0800a178 	.word	0x0800a178
  8002070:	20000a38 	.word	0x20000a38
- 8002074:	0800a124 	.word	0x0800a124
+ 8002074:	0800a120 	.word	0x0800a120
 
 08002078 <generalScreen>:
 
@@ -3622,9 +3622,9 @@ void generalScreen(){
  80020c8:	492c      	ldr	r1, [pc, #176]	; (800217c <generalScreen+0x104>)
  80020ca:	482b      	ldr	r0, [pc, #172]	; (8002178 <generalScreen+0x100>)
  80020cc:	f000 fad4 	bl	8002678 <SSD1306_Puts>
-	sprintf(screenText, "Lat:  %c%f", GPS.GPGGA.EW_Indicator, GPS.GPGGA.LatitudeDecimal);
+	sprintf(screenText, "Lat:  %c%f", GPS.GPGGA.NS_Indicator, GPS.GPGGA.LatitudeDecimal);
  80020d0:	4b2f      	ldr	r3, [pc, #188]	; (8002190 <generalScreen+0x118>)
- 80020d2:	f893 3230 	ldrb.w	r3, [r3, #560]	; 0x230
+ 80020d2:	f893 3220 	ldrb.w	r3, [r3, #544]	; 0x220
  80020d6:	461a      	mov	r2, r3
  80020d8:	4b2d      	ldr	r3, [pc, #180]	; (8002190 <generalScreen+0x118>)
  80020da:	e9d3 3486 	ldrd	r3, r4, [r3, #536]	; 0x218
@@ -3641,9 +3641,9 @@ void generalScreen(){
  80020f4:	4921      	ldr	r1, [pc, #132]	; (800217c <generalScreen+0x104>)
  80020f6:	4820      	ldr	r0, [pc, #128]	; (8002178 <generalScreen+0x100>)
  80020f8:	f000 fabe 	bl	8002678 <SSD1306_Puts>
-	sprintf(screenText, "Long: %c%f", GPS.GPGGA.NS_Indicator, GPS.GPGGA.LongitudeDecimal);
+	sprintf(screenText, "Long: %c%f", GPS.GPGGA.EW_Indicator, GPS.GPGGA.LongitudeDecimal);
  80020fc:	4b24      	ldr	r3, [pc, #144]	; (8002190 <generalScreen+0x118>)
- 80020fe:	f893 3220 	ldrb.w	r3, [r3, #544]	; 0x220
+ 80020fe:	f893 3230 	ldrb.w	r3, [r3, #560]	; 0x230
  8002102:	461a      	mov	r2, r3
  8002104:	4b22      	ldr	r3, [pc, #136]	; (8002190 <generalScreen+0x118>)
  8002106:	e9d3 348a 	ldrd	r3, r4, [r3, #552]	; 0x228
@@ -3697,18 +3697,18 @@ void generalScreen(){
  800216c:	46bd      	mov	sp, r7
  800216e:	bd90      	pop	{r4, r7, pc}
  8002170:	200009f4 	.word	0x200009f4
- 8002174:	0800a190 	.word	0x0800a190
+ 8002174:	0800a18c 	.word	0x0800a18c
  8002178:	200009f8 	.word	0x200009f8
  800217c:	20000000 	.word	0x20000000
- 8002180:	20000234 	.word	0x20000234
- 8002184:	20000235 	.word	0x20000235
- 8002188:	20000236 	.word	0x20000236
- 800218c:	0800a0e8 	.word	0x0800a0e8
+ 8002180:	20000238 	.word	0x20000238
+ 8002184:	20000239 	.word	0x20000239
+ 8002188:	2000023a 	.word	0x2000023a
+ 800218c:	0800a0e4 	.word	0x0800a0e4
  8002190:	20000660 	.word	0x20000660
- 8002194:	0800a134 	.word	0x0800a134
- 8002198:	0800a140 	.word	0x0800a140
+ 8002194:	0800a130 	.word	0x0800a130
+ 8002198:	0800a13c 	.word	0x0800a13c
  800219c:	20000a38 	.word	0x20000a38
- 80021a0:	0800a124 	.word	0x0800a124
+ 80021a0:	0800a120 	.word	0x0800a120
 
 080021a4 <standBy>:
 
@@ -3826,11 +3826,11 @@ void standBy(){
 }
  800224a:	bd80      	pop	{r7, pc}
  800224c:	20000008 	.word	0x20000008
- 8002250:	0800a19c 	.word	0x0800a19c
- 8002254:	0800a1a8 	.word	0x0800a1a8
+ 8002250:	0800a198 	.word	0x0800a198
+ 8002254:	0800a1a4 	.word	0x0800a1a4
  8002258:	200009b4 	.word	0x200009b4
  800225c:	2000022f 	.word	0x2000022f
- 8002260:	20000230 	.word	0x20000230
+ 8002260:	20000234 	.word	0x20000234
  8002264:	2000022e 	.word	0x2000022e
 
 08002268 <Error_Handler>:
@@ -4083,7 +4083,7 @@ uint8_t SSD1306_Init(void) {
  80023f4:	bd80      	pop	{r7, pc}
  80023f6:	bf00      	nop
  80023f8:	20000960 	.word	0x20000960
- 80023fc:	2000063c 	.word	0x2000063c
+ 80023fc:	20000640 	.word	0x20000640
 
 08002400 <SSD1306_UpdateScreen>:
 
@@ -4140,7 +4140,7 @@ void SSD1306_UpdateScreen(void) {
  8002452:	46bd      	mov	sp, r7
  8002454:	bd80      	pop	{r7, pc}
  8002456:	bf00      	nop
- 8002458:	2000023c 	.word	0x2000023c
+ 8002458:	20000240 	.word	0x20000240
 
 0800245c <SSD1306_Fill>:
 	for (i = 0; i < sizeof(SSD1306_Buffer); i++) {
@@ -4172,7 +4172,7 @@ void SSD1306_Fill(SSD1306_COLOR_t color) {
  8002482:	46bd      	mov	sp, r7
  8002484:	bd80      	pop	{r7, pc}
  8002486:	bf00      	nop
- 8002488:	2000023c 	.word	0x2000023c
+ 8002488:	20000240 	.word	0x20000240
 
 0800248c <SSD1306_DrawPixel>:
 
@@ -4283,8 +4283,8 @@ void SSD1306_DrawPixel(uint16_t x, uint16_t y, SSD1306_COLOR_t color) {
  800253c:	f85d 7b04 	ldr.w	r7, [sp], #4
  8002540:	4770      	bx	lr
  8002542:	bf00      	nop
- 8002544:	2000063c 	.word	0x2000063c
- 8002548:	2000023c 	.word	0x2000023c
+ 8002544:	20000640 	.word	0x20000640
+ 8002548:	20000240 	.word	0x20000240
 
 0800254c <SSD1306_GotoXY>:
 
@@ -4312,7 +4312,7 @@ void SSD1306_GotoXY(uint16_t x, uint16_t y) {
  800256c:	46bd      	mov	sp, r7
  800256e:	f85d 7b04 	ldr.w	r7, [sp], #4
  8002572:	4770      	bx	lr
- 8002574:	2000063c 	.word	0x2000063c
+ 8002574:	20000640 	.word	0x20000640
 
 08002578 <SSD1306_Putc>:
 
@@ -4471,7 +4471,7 @@ char SSD1306_Putc(char ch, FontDef_t* Font, SSD1306_COLOR_t color) {
  800266e:	46bd      	mov	sp, r7
  8002670:	bd80      	pop	{r7, pc}
  8002672:	bf00      	nop
- 8002674:	2000063c 	.word	0x2000063c
+ 8002674:	20000640 	.word	0x20000640
 
 08002678 <SSD1306_Puts>:
 
@@ -5654,7 +5654,7 @@ void SysTick_Handler(void)
  8002ce2:	bf00      	nop
  8002ce4:	bd80      	pop	{r7, pc}
  8002ce6:	bf00      	nop
- 8002ce8:	20000642 	.word	0x20000642
+ 8002ce8:	20000646 	.word	0x20000646
 
 08002cec <EXTI1_IRQHandler>:
 
@@ -5858,7 +5858,7 @@ caddr_t _sbrk(int incr)
  8002da2:	3710      	adds	r7, #16
  8002da4:	46bd      	mov	sp, r7
  8002da6:	bd80      	pop	{r7, pc}
- 8002da8:	20000644 	.word	0x20000644
+ 8002da8:	20000648 	.word	0x20000648
  8002dac:	20002b50 	.word	0x20002b50
 
 08002db0 <SystemInit>:
@@ -10218,7 +10218,7 @@ HAL_StatusTypeDef HAL_RCC_ClockConfig(RCC_ClkInitTypeDef  *RCC_ClkInitStruct, ui
  800465e:	bf00      	nop
  8004660:	40023c00 	.word	0x40023c00
  8004664:	40023800 	.word	0x40023800
- 8004668:	0800c9d0 	.word	0x0800c9d0
+ 8004668:	0800c9cc 	.word	0x0800c9cc
  800466c:	2000001c 	.word	0x2000001c
 
 08004670 <HAL_RCC_GetSysClockFreq>:
@@ -10454,7 +10454,7 @@ uint32_t HAL_RCC_GetPCLK1Freq(void)
  8004808:	4618      	mov	r0, r3
  800480a:	bd80      	pop	{r7, pc}
  800480c:	40023800 	.word	0x40023800
- 8004810:	0800c9e0 	.word	0x0800c9e0
+ 8004810:	0800c9dc 	.word	0x0800c9dc
 
 08004814 <HAL_RCC_GetPCLK2Freq>:
   * @note   Each time PCLK2 changes, this function must be called to update the
@@ -10480,7 +10480,7 @@ uint32_t HAL_RCC_GetPCLK2Freq(void)
  8004830:	4618      	mov	r0, r3
  8004832:	bd80      	pop	{r7, pc}
  8004834:	40023800 	.word	0x40023800
- 8004838:	0800c9e0 	.word	0x0800c9e0
+ 8004838:	0800c9dc 	.word	0x0800c9dc
 
 0800483c <HAL_SPI_Init>:
   * @param  hspi pointer to a SPI_HandleTypeDef structure that contains
@@ -13344,7 +13344,7 @@ uint8_t FATFS_LinkDriverEx(const Diskio_drvTypeDef *drv, char *path, uint8_t lun
  800589c:	f85d 7b04 	ldr.w	r7, [sp], #4
  80058a0:	4770      	bx	lr
  80058a2:	bf00      	nop
- 80058a4:	20000648 	.word	0x20000648
+ 80058a4:	2000064c 	.word	0x2000064c
 
 080058a8 <FATFS_LinkDriver>:
   * @param  drv: pointer to the disk IO Driver structure
@@ -13848,10 +13848,10 @@ uint8_t FATFS_LinkDriver(const Diskio_drvTypeDef *drv, char *path)
  8005d48:	9306      	str	r3, [sp, #24]
  8005d4a:	e015      	b.n	8005d78 <_printf_float+0x324>
  8005d4c:	7fefffff 	.word	0x7fefffff
- 8005d50:	0800c9ec 	.word	0x0800c9ec
- 8005d54:	0800c9e8 	.word	0x0800c9e8
- 8005d58:	0800c9f4 	.word	0x0800c9f4
- 8005d5c:	0800c9f0 	.word	0x0800c9f0
+ 8005d50:	0800c9e8 	.word	0x0800c9e8
+ 8005d54:	0800c9e4 	.word	0x0800c9e4
+ 8005d58:	0800c9f0 	.word	0x0800c9f0
+ 8005d5c:	0800c9ec 	.word	0x0800c9ec
  8005d60:	0800cbab 	.word	0x0800cbab
  8005d64:	2301      	movs	r3, #1
  8005d66:	9a06      	ldr	r2, [sp, #24]
@@ -14332,8 +14332,8 @@ uint8_t FATFS_LinkDriver(const Diskio_drvTypeDef *drv, char *path)
  80061d2:	f884 3042 	strb.w	r3, [r4, #66]	; 0x42
  80061d6:	f104 0542 	add.w	r5, r4, #66	; 0x42
  80061da:	e76c      	b.n	80060b6 <_printf_i+0xf6>
- 80061dc:	0800c9f8 	.word	0x0800c9f8
- 80061e0:	0800ca09 	.word	0x0800ca09
+ 80061dc:	0800c9f4 	.word	0x0800c9f4
+ 80061e0:	0800ca05 	.word	0x0800ca05
 
 080061e4 <_scanf_float>:
  80061e4:	e92d 4ff0 	stmdb	sp!, {r4, r5, r6, r7, r8, r9, sl, fp, lr}
@@ -14706,7 +14706,7 @@ uint8_t FATFS_LinkDriver(const Diskio_drvTypeDef *drv, char *path)
  800659e:	e7a5      	b.n	80064ec <_scanf_float+0x308>
  80065a0:	2600      	movs	r6, #0
  80065a2:	e666      	b.n	8006272 <_scanf_float+0x8e>
- 80065a4:	0800ca1a 	.word	0x0800ca1a
+ 80065a4:	0800ca16 	.word	0x0800ca16
 
 080065a8 <nanf>:
  80065a8:	ed9f 0a01 	vldr	s0, [pc, #4]	; 80065b0 <nanf+0x8>
@@ -15106,7 +15106,7 @@ uint8_t FATFS_LinkDriver(const Diskio_drvTypeDef *drv, char *path)
  8006934:	f04f 0c00 	mov.w	ip, #0
  8006938:	e7f8      	b.n	800692c <_strtod_l+0x274>
  800693a:	bf00      	nop
- 800693c:	0800ca20 	.word	0x0800ca20
+ 800693c:	0800ca1c 	.word	0x0800ca1c
  8006940:	7ff00000 	.word	0x7ff00000
  8006944:	9b1b      	ldr	r3, [sp, #108]	; 0x6c
  8006946:	1c5f      	adds	r7, r3, #1
@@ -15393,10 +15393,10 @@ uint8_t FATFS_LinkDriver(const Diskio_drvTypeDef *drv, char *path)
  8006c30:	f8c9 3000 	str.w	r3, [r9]
  8006c34:	e765      	b.n	8006b02 <_strtod_l+0x44a>
  8006c36:	bf00      	nop
- 8006c38:	0800c9ed 	.word	0x0800c9ed
+ 8006c38:	0800c9e9 	.word	0x0800c9e9
  8006c3c:	0800ca73 	.word	0x0800ca73
- 8006c40:	0800c9f5 	.word	0x0800c9f5
- 8006c44:	0800ca34 	.word	0x0800ca34
+ 8006c40:	0800c9f1 	.word	0x0800c9f1
+ 8006c44:	0800ca30 	.word	0x0800ca30
  8006c48:	0800cab0 	.word	0x0800cab0
  8006c4c:	0800ca88 	.word	0x0800ca88
  8006c50:	7ff00000 	.word	0x7ff00000
@@ -18988,7 +18988,7 @@ uint8_t FATFS_LinkDriver(const Diskio_drvTypeDef *drv, char *path)
  8008fee:	e7c7      	b.n	8008f80 <_free_r+0x24>
  8008ff0:	bd38      	pop	{r3, r4, r5, pc}
  8008ff2:	bf00      	nop
- 8008ff4:	20000654 	.word	0x20000654
+ 8008ff4:	20000658 	.word	0x20000658
 
 08008ff8 <_malloc_r>:
  8008ff8:	b570      	push	{r4, r5, r6, lr}
@@ -19067,8 +19067,8 @@ uint8_t FATFS_LinkDriver(const Diskio_drvTypeDef *drv, char *path)
  800909e:	d0cf      	beq.n	8009040 <_malloc_r+0x48>
  80090a0:	6025      	str	r5, [r4, #0]
  80090a2:	e7db      	b.n	800905c <_malloc_r+0x64>
- 80090a4:	20000654 	.word	0x20000654
- 80090a8:	20000658 	.word	0x20000658
+ 80090a4:	20000658 	.word	0x20000658
+ 80090a8:	2000065c 	.word	0x2000065c
 
 080090ac <__ssputs_r>:
  80090ac:	e92d 47f0 	stmdb	sp!, {r4, r5, r6, r7, r8, r9, sl, lr}
@@ -20019,7 +20019,7 @@ uint8_t FATFS_LinkDriver(const Diskio_drvTypeDef *drv, char *path)
  800993e:	e7ea      	b.n	8009916 <_scanf_i+0x1aa>
  8009940:	2001      	movs	r0, #1
  8009942:	e7f2      	b.n	800992a <_scanf_i+0x1be>
- 8009944:	0800a1b0 	.word	0x0800a1b0
+ 8009944:	0800a1ac 	.word	0x0800a1ac
  8009948:	080073b9 	.word	0x080073b9
  800994c:	08009af1 	.word	0x08009af1
  8009950:	0800cba5 	.word	0x0800cba5

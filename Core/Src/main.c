@@ -68,7 +68,7 @@ btn_t modeBtn = OFF;
 btn_t setBtn = OFF;
 
 typedef enum {RADIATION, TIMEDATE, GPSINFO, ALL, SETTIMEZONE, STANDBY} screenMode_t;
-screenMode_t mode = TIMEDATE;
+screenMode_t mode = RADIATION;
 
 int8_t utcHOffset = 1;
 uint32_t secTick = 0;
@@ -580,7 +580,7 @@ void timedateScreen(){
 	sprintf(screenText, "UTC%+d", utcHOffset);
 	SSD1306_GotoXY(1, 1);
 	SSD1306_Puts(screenText, &Font_11x18, 1);
-	sprintf(screenText, "%02hd:%02d:%02d", hour, minute, second);
+	sprintf(screenText, "%02d:%02d:%02d", hour, minute, second);
 	SSD1306_GotoXY(1, 17);
 	SSD1306_Puts(screenText, &Font_11x18, 1);
 	sprintf(screenText, "%02d-%02d-20%02d", GPS.GPRMC.Date, GPS.GPRMC.Month, GPS.GPRMC.Year);
@@ -595,17 +595,17 @@ void timedateScreen(){
 
 void gpsinfoScreen(){
 	SSD1306_Clear();
-	sprintf(screenText, "Lat:  %c%f", GPS.GPGGA.EW_Indicator, GPS.GPGGA.LatitudeDecimal);
+	sprintf(screenText, "Lat:  %c%f", GPS.GPGGA.NS_Indicator, GPS.GPGGA.LatitudeDecimal);
 	SSD1306_GotoXY(1, 1);
 	SSD1306_Puts(screenText, &Font_7x10, 1);
-	sprintf(screenText, "Long: %c%f", GPS.GPGGA.NS_Indicator, GPS.GPGGA.LongitudeDecimal);
+	sprintf(screenText, "Long: %c%f", GPS.GPGGA.EW_Indicator, GPS.GPGGA.LongitudeDecimal);
 	SSD1306_GotoXY(1, 10);
 	SSD1306_Puts(screenText, &Font_7x10, 1);
 	sprintf(screenText, "Sats: %d", GPS.GPGGA.SatellitesUsed);
 	SSD1306_GotoXY(1, 20);
 	SSD1306_Puts(screenText, &Font_7x10, 1);
 	switch(GPS.GPGGA.PositionFixIndicator){
-	case 0:
+	default:
 		SSD1306_GotoXY(1, 30);
 		SSD1306_Puts("Fix:  N/A", &Font_7x10, 1);
 		break;
@@ -635,10 +635,10 @@ void generalScreen(){
 	sprintf(screenText, "Time: %02d:%02d:%02d", hour, minute, second);
 	SSD1306_GotoXY(1, 10);
 	SSD1306_Puts(screenText, &Font_7x10, 1);
-	sprintf(screenText, "Lat:  %c%f", GPS.GPGGA.EW_Indicator, GPS.GPGGA.LatitudeDecimal);
+	sprintf(screenText, "Lat:  %c%f", GPS.GPGGA.NS_Indicator, GPS.GPGGA.LatitudeDecimal);
 	SSD1306_GotoXY(1, 20);
 	SSD1306_Puts(screenText, &Font_7x10, 1);
-	sprintf(screenText, "Long: %c%f", GPS.GPGGA.NS_Indicator, GPS.GPGGA.LongitudeDecimal);
+	sprintf(screenText, "Long: %c%f", GPS.GPGGA.EW_Indicator, GPS.GPGGA.LongitudeDecimal);
 	SSD1306_GotoXY(1, 30);
 	SSD1306_Puts(screenText, &Font_7x10, 1);
 	SSD1306_DrawLine(1, 51, 128, 51, 1);
